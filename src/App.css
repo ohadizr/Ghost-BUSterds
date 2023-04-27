@@ -1,0 +1,23 @@
+.videoContainer {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%;
+}
+.object-detection-images {
+  position: fixed;
+  display: flex;
+  flex-direction: space-around;
+  justify-content: left;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 300px;
+  background-color: aliceblue;
+}
+.image-container {
+  position: relative;
+  padding-left: 20px;
+  width: 300px;
+  height: 300px;
+}
