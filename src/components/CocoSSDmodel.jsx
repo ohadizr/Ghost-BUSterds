@@ -15,7 +15,6 @@ export default function CocoSSModel() {
   const canvasRef = useRef(null);
   const [phoneImagesArray, setPhoneImagesArray] = useState([]);
 
-  // Main function
   const runCoco = async () => {
     await tf.setBackend("webgl");
 
@@ -62,12 +61,10 @@ export default function CocoSSModel() {
     const timestamp = new Date().toLocaleTimeString();
     console.log(`Cell Phone detected at ${timestamp}`);
 
-    // Get a reference to the canvas element
     const canvas = document.createElement("canvas");
     canvas.width = width;
     canvas.height = height;
 
-    // Draw only the detected object onto the canvas
     const ctx = canvas.getContext("2d");
     ctx.drawImage(
       webcamRef.current.video,
@@ -81,10 +78,8 @@ export default function CocoSSModel() {
       height
     );
 
-    // Convert the canvas to a data URL
     const dataUrl = canvas.toDataURL("image/png");
 
-    // Update the phoneImagesArray state to add the new image
     setPhoneImagesArray((prevPhoneImagesArray) => [
       ...prevPhoneImagesArray,
       dataUrl,
@@ -92,16 +87,22 @@ export default function CocoSSModel() {
 
     console.log("Step 2 - Cell phone confirmed");
   }
-  // async function tesseract() {
-  //   T.recognize(bus, "eng", { logger: (e) => console.log(e) })
-  //     .then((out) => console.log(out.data.text))
-  //     .catch((e) => console.log(e));
-  // }
+  async function tesseract() {
+    let imgtocheck = "https://i.ytimg.com/vi/H7Nj2axPlXk/maxresdefault.jpg";
+    T.recognize(imgtocheck, "eng", { logger: (e) => console.log(e) })
+      .then((out) => {
+        const text = out.data.text;
+        // const numbersOnly = text.replace(/\D/g, "");
+        // console.log(numbersOnly);
+        console.log(text);
+      })
+      .catch((e) => console.log(e));
+  }
 
   useEffect(() => {
-    // tesseract();
+    tesseract();
 
-    runCoco();
+    // runCoco();
   }, []);
 
   return (
