@@ -100,9 +100,9 @@ export default function CocoSSModel() {
   }
 
   useEffect(() => {
-    tesseract();
+    // tesseract();
 
-    // runCoco();
+    runCoco();
   }, []);
 
   return (
